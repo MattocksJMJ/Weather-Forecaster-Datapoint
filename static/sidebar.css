@@ -1,0 +1,34 @@
+.sidebar_contracted {
+  width: 90px;
+  position: absolute;
+  display: inline-grid;
+  height: 12%;
+  z-index: 1;
+  color: #333333;
+}
+
+.burgerButton {
+  padding: 30px;
+  height: 90px;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.siderbar_extended {
+  display: inline-block;
+  left: -100%;
+  height: 99%;
+  width: 500px;
+  position: absolute;
+  z-index: 3;
+  background: #eee;
+  border-radius: 5px;
+  color: #333333;
+}
+
+.sidebarGrid {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 2fr 17fr 1fr;
+}

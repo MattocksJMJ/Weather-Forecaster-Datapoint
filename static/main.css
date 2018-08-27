@@ -1,0 +1,121 @@
+/* MAIN CSS */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: 'Karla', sans-serif;
+  background: rgba(51, 51, 51, 1);
+  color: #ccc;
+  overflow: hidden;
+}
+
+.main {
+  position: absolute;
+  display: inline-grid;
+  width: 100%;
+}
+
+.title {
+  display: inline-block;
+  position: relative;
+  height: 90px;
+  padding: 1em 0 1em 0;
+  background: #eee;
+  text-align: center;
+  color: #333333;
+  padding: 24px 15px 24px 15px;
+  font-size: 35px;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 2;
+  display: none;
+}
+
+.mainText {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.locationTag {
+  grid-column: 1/2;
+  align-self: flex-end;
+  padding-top: 1em;
+  padding-left: 2em;
+  position: relative;
+  display: block;
+}
+
+.locationBox {
+  background: inherit;
+  color: inherit;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  padding-left: 5px;
+}
+
+.autoCom {
+  position: absolute;
+  left: 48.5%;
+  width: 173px;
+  border: 1px solid #eee;
+  padding: 2px 2px 2px 5px;
+  display: none;
+}
+
+.autoComQueries {
+  background: transparent;
+  border: 0;
+  color: #ccc;
+  font-family: inherit;
+  list-style: none;
+}
+
+.dNB {
+  grid-column: 4;
+  justify-self: flex-end;
+  align-self: flex-end;
+  padding-top: 1em;
+  padding-right: 2em;
+}
+
+.dayNightButton {
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  border-radius: 5px;
+}
+
+.dNB #day {
+  background: #eee;
+  color: #333333;
+}
+
+.dNB #night {
+  background: #333333;
+  color: #ccc;
+}
+
+.output {
+  grid-column: 1/5;
+  padding-top: 5em;
+  display: grid;
+}

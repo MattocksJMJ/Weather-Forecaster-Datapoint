@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='main.css' type="text/css">
+  <link rel="stylesheet" href='sidebar.css' type="text/css">
+  <link rel="stylesheet" href='card.css' type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+  <title> Weather Forecast </title>
+</head>
+
+<body>
+  <div class="sidebar_contracted">
+    <div class="burgerButton">
+      ☰
+    </div>
+  </div>
+  <div class="siderbar_extended">
+    <div class="sidebarGrid">
+      <div style="padding:0.5em 0.5em 0.5em 0.75em">
+        <br>
+        <p style="font-size:22px;">Info on the creation and the usage of this site</p>
+      </div>
+      <div style="padding:0.5em 0.5em 0.5em 0.75em">
+        <p>This site uses the MET Office's Datapoint API to display current and future predictions of the weather in a chosen location. I have 3 places currently hardcoded in: Ipswich, Portsmouth and Westminster. However these can be easily changed.</p><br>
+        <p>For usage simply choose where you would like to display the weather and a get request will be sent to display the forecast for the next 4 days.</p><br>
+        <p>I developed this site as a personal project in order to work more with APIs and generally improve my web development design skills.</p><br>
+        <p>The animations were created by <a href='https://dribbble.com/shots/3665783-Weather-icon-set'>Martina Diyanova</a> and <a href="https://dribbble.com/shots/1389791--GIF-Weather">Mark Geyer</a>.</p><br>
+        <p>UV Index:<br> 0.0-2.9 Low <br> 3.0-5.9 Moderate <br> 6.0-7.9 High <br> 8.0-10.9 Very High <br> 11+ Extreme</p>
+      </div>
+      <div style="padding:0.75em 0.75em 0.25em 0.75em;">
+        Made By Jamie Mattocks &nbsp;
+        <a href='https://github.com/MattocksJMJ'>Github</a> &nbsp;
+        <a href="https://www.metoffice.gov.uk/datapoint">Datapoint</a>
+      </div>
+    </div>
+  </div>
+  <div class="overlay">
+  </div>
+  <div class="main">
+    <div class='title'>
+      Weather Forecast 
+    </div>
+    <div class="mainText">
+      <div class="locationTag">
+        Displaying the weather in:
+        <input type="text" class="locationBox" id="locationBox" placeholder='______________' onkeyup="autoCompletePlaces(this)">
+        <ul class="autoCom" id='autoCom'></ul>
+      </div>
+      <div class="dNB">
+        <input type="button" value="Day" class="dayNightButton" id="day">
+        <input type="button" value="Night" class="dayNightButton" id="night">
+      </div>
+      <div class="output">
+        <div class="cardDiv">
+          <div class="arrow left">
+            < </div>
+              <div class="card">
+                <p class="weatherType"></p>
+                <p class="feelsLikeTemp"></p>
+                <p class="actualTemp"></p>
+                <p class="precipProb"></p>
+                <p class="date"></p>
+              </div>
+              <div class="arrow right">
+                >
+              </div>
+          </div>
+          <div class="cardArrow">
+            <span class="uvSpan"><p>Max UV:</p><p class="uv" style="grid-column:2/4;"></p></span>
+            <span class="humSpan"><p>Humidity:</p><p class="humidity" style="grid-column:2/4;"></p></span>
+            <span class="wGust"><p>Wind Gust:</p><p class="windGust" style="grid-column:2/4;"></p></span>
+            <span class="visSpan"><p>Visibility:</p><p class="visibility" style="grid-column:2/4;font-size:14px;"></p></span>
+            <span class="wind"><p>Wind: </p><p class="windSpeed"></p><p class="windDirection"></p></span>
+            <p class="dArrow">▼</p>
+            <p class="uArrow">▲</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="codes.js"></script>
+
+</html>
