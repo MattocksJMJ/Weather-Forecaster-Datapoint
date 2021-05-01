@@ -66,7 +66,7 @@ $(locationBox).keypress((evt) => {
         xhr.setRequestHeader("Content-Type", "application/json");
         var send = {"location_id":location_id, "dayNight":dayNight};
         var sendString = JSON.stringify(send);
-        xhr.send(sendString);
+        xml.send(sendString);
       }
 
     // function getData(location_id) {
