@@ -69,8 +69,8 @@ $(locationBox).keypress((evt) => {
         xml.send(sendString);
       }
 
-      var response = XMLHttpRequest.response;
-      console.log(response.body);
+      var response = XMLHttpRequest.responseText;
+      console.log(response);
       
 
     // function getData(location_id) {
