@@ -1,3 +1,5 @@
+const { json } = require("body-parser");
+
 const burgerButton = document.getElementsByClassName('burgerButton');
 const sidebar = document.getElementsByClassName('siderbar_extended');
 const overlay = document.getElementsByClassName('overlay');
@@ -71,7 +73,8 @@ $(locationBox).keypress((evt) => {
 
         // get response
         function reqListener(){
-          console.log(this.responseText);
+          var response = JSON.parse(this.responseText);
+          console.log(response);
         }
       }
 
