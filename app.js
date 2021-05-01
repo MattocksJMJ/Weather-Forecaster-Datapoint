@@ -46,4 +46,4 @@ app.get('/test', (req, res) => {
 
 
 app.listen(process.env.PORT, 3000)
-console.log('Server ready started up');
+console.log('Server ready');
