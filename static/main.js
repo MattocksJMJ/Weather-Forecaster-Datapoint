@@ -61,9 +61,12 @@ $(locationBox).keypress((evt) => {
     } else {}
 
       function getData(location_id) {
+        var xml = new XMLHttpRequest();
+        xml.open("POST", "/api", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         var send = {"location_id":location_id, "dayNight":dayNight};
         var sendString = JSON.stringify(send);
-        XMLHttpRequest.send(sendString);
+        xhr.send(sendString);
       }
 
     // function getData(location_id) {

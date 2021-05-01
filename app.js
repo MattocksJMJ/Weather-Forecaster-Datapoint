@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.post('/', (req, res) => {
+app.post('/api', (req, res) => {
   console.log(req.body.location_id);
 })
 
