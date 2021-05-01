@@ -22,6 +22,22 @@ app.get('/', (req, res) => {
 
 app.post('/api', (req, res) => {
   console.log(req.body.location_id);
+	var options = {url: 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' +
+			req.body.location_id +
+			'?res=daily&' + 
+			'key=' +
+			api_key,
+			headers: {
+				'Content-Type': 'application/json'
+			}};
+	request(options, (error, response, body) => {
+		console.log('error: ', error);
+		console.log('status code: ', response && response.statusCode);
+		console.log('body: ', body);
+		body = JSON.parse(body);
+		res.setHeader('Content-Type', 'application/json');
+		res.send(body);
+	});
 })
 
 // app.post('/test', (req, res) => {

@@ -64,10 +64,14 @@ $(locationBox).keypress((evt) => {
         var xml = new XMLHttpRequest();
         xml.open("POST", "/api", true);
         xml.setRequestHeader("Content-Type", "application/json");
-        var send = {"location_id":location_id, "dayNight":dayNight};
+        var send = {"location_id":location_id};
         var sendString = JSON.stringify(send);
         xml.send(sendString);
       }
+
+      var response = XMLHttpRequest.response;
+      console.log(response);
+      
 
     // function getData(location_id) {
     //   $.ajax({
