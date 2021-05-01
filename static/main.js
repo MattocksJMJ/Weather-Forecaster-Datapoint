@@ -70,7 +70,7 @@ $(locationBox).keypress((evt) => {
       }
 
       var response = XMLHttpRequest.response;
-      console.log(response);
+      console.log(response.body);
       
 
     // function getData(location_id) {
