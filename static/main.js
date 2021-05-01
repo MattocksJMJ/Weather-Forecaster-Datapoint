@@ -1,5 +1,3 @@
-const { json } = require("body-parser");
-
 const burgerButton = document.getElementsByClassName('burgerButton');
 const sidebar = document.getElementsByClassName('siderbar_extended');
 const overlay = document.getElementsByClassName('overlay');
