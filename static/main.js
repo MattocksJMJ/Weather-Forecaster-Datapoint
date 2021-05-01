@@ -63,7 +63,7 @@ $(locationBox).keypress((evt) => {
       function getData(location_id) {
         var xml = new XMLHttpRequest();
         xml.open("POST", "/api", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
+        xml.setRequestHeader("Content-Type", "application/json");
         var send = {"location_id":location_id, "dayNight":dayNight};
         var sendString = JSON.stringify(send);
         xml.send(sendString);
