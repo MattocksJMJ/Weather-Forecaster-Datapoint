@@ -15,7 +15,7 @@ body {
   font-family: 'Karla', sans-serif;
   background: rgba(51, 51, 51, 1);
   color: #ccc;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .main {
