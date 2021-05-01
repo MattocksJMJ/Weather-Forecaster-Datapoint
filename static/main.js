@@ -3,7 +3,7 @@ const sidebar = document.getElementsByClassName('siderbar_extended');
 const overlay = document.getElementsByClassName('overlay');
 let sidebarOut = false;
 const locationBox = document.getElementsByClassName('locationBox');
-const api_key = '98e621b0-231d-4ddd-bbe8-5a1a1e7ff48b';
+const api_key = '';
 const dayB = document.getElementById('day');
 const nightB = document.getElementById('night');
 let dayNight = 'day';
@@ -40,6 +40,7 @@ $(overlay).click(() => {
 });
 
 // When enter key is pressed request data
+
 $(locationBox).keypress((evt) => {
   if (evt.which == 13) {
     evt.preventDefault();
@@ -59,104 +60,111 @@ $(locationBox).keypress((evt) => {
       getData(354160);
     } else {}
 
-    function getData(location_id) {
-      $.ajax({
-        url: 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' + location_id + '?res=daily&' +
-          'key=' + api_key,
-        method: 'GET',
-        headers: {},
-        success: function(response) {
-          // Get all the individual elements needed into variables
-          let name = response.SiteRep.DV.Location.name;
-          let country = response.SiteRep.DV.Location.country;
-          // Day
-          if (dayNight == 'day') {
-            let direc = response.SiteRep.DV.Location.Period[panel].Rep[0].D;
-            let Dmax = response.SiteRep.DV.Location.Period[panel].Rep[0].Dm;
-            let FDmax = response.SiteRep.DV.Location.Period[panel].Rep[0].FDm;
-            let Gnoon = response.SiteRep.DV.Location.Period[panel].Rep[0].Gn;
-            let Hnoon = response.SiteRep.DV.Location.Period[panel].Rep[0].Hn;
-            let ppD = response.SiteRep.DV.Location.Period[panel].Rep[0].PPd;
-            let sp = response.SiteRep.DV.Location.Period[panel].Rep[0].S;
-            let uv = response.SiteRep.DV.Location.Period[panel].Rep[0].U;
-            let vis = response.SiteRep.DV.Location.Period[panel].Rep[0].V;
-            let weType = response.SiteRep.DV.Location.Period[panel].Rep[0].W;
-            // Call the function weatherTypeCode to decypher the code to text
-            let weTypeF = weatherTypeCode(weType);
-            // Put all the information into various text boxes for the user
-            $(locationBox).val(capitalizeFirstLetter(name) + ', ' + capitalizeFirstLetter(country));
-            $('.weatherType').html(weatherTypeCode(weType));
-            $('.feelsLikeTemp').html(FDmax + '°' + '<br>' + 'feels like');
-            $('.actualTemp').html(Dmax + '°');
-            $('.precipProb').html(ppD + '%' + '<br>' + 'rain odds');
-            $('.uv').html(uv);
-            $('.humidity').html(Hnoon + '%');
-            $('.visibility').html(visibilityCode(vis));
-            $('.windSpeed').html(sp + ' mph');
-            $('.windDirection').html(direc);
-            $('.windGust').html(Gnoon + ' mph');
-            $('.date').html(dayOfWeek(panel));
-            // Alter the background animation based on the weather descriptor
-            if (weTypeF == 'Sunny day') {
-              $('.card').css({
-                'background-image': 'url("/images/sun.gif")'
-              });
-            } else if (weTypeF == 'Partly cloudy') {
-              $('.card').css({
-                'background-image': 'url("/images/sun_cloudy.gif")'
-              });
-            } else if (weTypeF == 'Cloudy' || weTypeF == 'Overcast') {
-              $('.card').css({
-                'background-image': 'url("/images/cloudy.gif")'
-              });
-            } else if (weTypeF == 'Light rain shower' || weTypeF == 'Drizzle' || weTypeF == 'Light rain' || weTypeF == 'Heavy rain shower' || weTypeF == 'Heavy rain' || weTypeF == 'Sleet shower' || weTypeF == 'Sleet' || weTypeF == 'Hail shower' || weTypeF == 'Hail') {
-              $('.card').css({
-                'background-image': 'url("/images/rainy.gif")'
-              });
-            } else if (weTypeF == 'Thunder shower' || weTypeF == 'Thunder') {
-              $('.card').css({
-                'background-image': 'url("/images/stormy.gif")'
-              });
-            } else if (weTypeF == 'Mist' || weTypeF == 'Fog') {
-              $('.card').css({
-                'background-image': 'url("/images/foggy.gif")'
-              });
-            } else if (weTypeF == 'Light snow shower' || weTypeF == 'Light snow' || weTypeF == 'Heavy snow shower' || weTypeF == 'Heavy snow') {
-              $('.card').css({
-                'background-image': 'url("/images/snowy.gif")'
-              });
-            }
-            // Night
-          } else if (dayNight == 'night') {
-            let direcN = response.SiteRep.DV.Location.Period[panel].Rep[1].D;
-            let FNmin = response.SiteRep.DV.Location.Period[panel].Rep[1].FNm;
-            let Gmid = response.SiteRep.DV.Location.Period[panel].Rep[1].Gm;
-            let Hmid = response.SiteRep.DV.Location.Period[panel].Rep[1].Hm;
-            let Nmin = response.SiteRep.DV.Location.Period[panel].Rep[1].Nm;
-            let ppN = response.SiteRep.DV.Location.Period[panel].Rep[1].PPn;
-            let spN = response.SiteRep.DV.Location.Period[panel].Rep[1].S;
-            let visN = response.SiteRep.DV.Location.Period[panel].Rep[1].V;
-            let weTypeN = response.SiteRep.DV.Location.Period[panel].Rep[1].W;
-            $(locationBox).val(capitalizeFirstLetter(name) + ', ' + capitalizeFirstLetter(country));
-            $('.weatherType').html(weatherTypeCode(weTypeN));
-            $('.feelsLikeTemp').html(FNmin + '°' + '<br>' + 'feels like');
-            $('.actualTemp').html(Nmin + '°');
-            $('.precipProb').html(ppN + '%' + '<br>' + 'rain odds');
-            $('.uv').html('0');
-            $('.humidity').html(Hmid + '%');
-            $('.visibility').html(visibilityCode(visN));
-            $('.windSpeed').html(spN + ' mph');
-            $('.windDirection').html(direcN);
-            $('.windGust').html(Gmid + ' mph');
-            $('.date').html(dayOfWeek(panel));
+      function getData(location_id) {
+        var send = {"location_id":location_id, "dayNight":dayNight};
+        var sendString = JSON.stringify(send);
+        alert(sendString);
+        xhttp.send(send);
+      }
 
-            $('.card').css({
-              'background-image': 'url("/images/night.gif")'
-            });
-          }
-        }
-      });
-    }
+    // function getData(location_id) {
+    //   $.ajax({
+    //     url: 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' + location_id + '?res=daily&' +
+    //       'key=' + api_key,
+    //     method: 'GET',
+    //     headers: {},
+    //     success: function(response) {
+    //       // Get all the individual elements needed into variables
+    //       let name = response.SiteRep.DV.Location.name;
+    //       let country = response.SiteRep.DV.Location.country;
+    //       // Day
+    //       if (dayNight == 'day') {
+    //         let direc = response.SiteRep.DV.Location.Period[panel].Rep[0].D;
+    //         let Dmax = response.SiteRep.DV.Location.Period[panel].Rep[0].Dm;
+    //         let FDmax = response.SiteRep.DV.Location.Period[panel].Rep[0].FDm;
+    //         let Gnoon = response.SiteRep.DV.Location.Period[panel].Rep[0].Gn;
+    //         let Hnoon = response.SiteRep.DV.Location.Period[panel].Rep[0].Hn;
+    //         let ppD = response.SiteRep.DV.Location.Period[panel].Rep[0].PPd;
+    //         let sp = response.SiteRep.DV.Location.Period[panel].Rep[0].S;
+    //         let uv = response.SiteRep.DV.Location.Period[panel].Rep[0].U;
+    //         let vis = response.SiteRep.DV.Location.Period[panel].Rep[0].V;
+    //         let weType = response.SiteRep.DV.Location.Period[panel].Rep[0].W;
+    //         // Call the function weatherTypeCode to decypher the code to text
+    //         let weTypeF = weatherTypeCode(weType);
+    //         // Put all the information into various text boxes for the user
+    //         $(locationBox).val(capitalizeFirstLetter(name) + ', ' + capitalizeFirstLetter(country));
+    //         $('.weatherType').html(weatherTypeCode(weType));
+    //         $('.feelsLikeTemp').html(FDmax + '°' + '<br>' + 'feels like');
+    //         $('.actualTemp').html(Dmax + '°');
+    //         $('.precipProb').html(ppD + '%' + '<br>' + 'rain odds');
+    //         $('.uv').html(uv);
+    //         $('.humidity').html(Hnoon + '%');
+    //         $('.visibility').html(visibilityCode(vis));
+    //         $('.windSpeed').html(sp + ' mph');
+    //         $('.windDirection').html(direc);
+    //         $('.windGust').html(Gnoon + ' mph');
+    //         $('.date').html(dayOfWeek(panel));
+    //         // Alter the background animation based on the weather descriptor
+    //         if (weTypeF == 'Sunny day') {
+    //           $('.card').css({
+    //             'background-image': 'url("/images/sun.gif")'
+    //           });
+    //         } else if (weTypeF == 'Partly cloudy') {
+    //           $('.card').css({
+    //             'background-image': 'url("/images/sun_cloudy.gif")'
+    //           });
+    //         } else if (weTypeF == 'Cloudy' || weTypeF == 'Overcast') {
+    //           $('.card').css({
+    //             'background-image': 'url("/images/cloudy.gif")'
+    //           });
+    //         } else if (weTypeF == 'Light rain shower' || weTypeF == 'Drizzle' || weTypeF == 'Light rain' || weTypeF == 'Heavy rain shower' || weTypeF == 'Heavy rain' || weTypeF == 'Sleet shower' || weTypeF == 'Sleet' || weTypeF == 'Hail shower' || weTypeF == 'Hail') {
+    //           $('.card').css({
+    //             'background-image': 'url("/images/rainy.gif")'
+    //           });
+    //         } else if (weTypeF == 'Thunder shower' || weTypeF == 'Thunder') {
+    //           $('.card').css({
+    //             'background-image': 'url("/images/stormy.gif")'
+    //           });
+    //         } else if (weTypeF == 'Mist' || weTypeF == 'Fog') {
+    //           $('.card').css({
+    //             'background-image': 'url("/images/foggy.gif")'
+    //           });
+    //         } else if (weTypeF == 'Light snow shower' || weTypeF == 'Light snow' || weTypeF == 'Heavy snow shower' || weTypeF == 'Heavy snow') {
+    //           $('.card').css({
+    //             'background-image': 'url("/images/snowy.gif")'
+    //           });
+    //         }
+    //         // Night
+    //       } else if (dayNight == 'night') {
+    //         let direcN = response.SiteRep.DV.Location.Period[panel].Rep[1].D;
+    //         let FNmin = response.SiteRep.DV.Location.Period[panel].Rep[1].FNm;
+    //         let Gmid = response.SiteRep.DV.Location.Period[panel].Rep[1].Gm;
+    //         let Hmid = response.SiteRep.DV.Location.Period[panel].Rep[1].Hm;
+    //         let Nmin = response.SiteRep.DV.Location.Period[panel].Rep[1].Nm;
+    //         let ppN = response.SiteRep.DV.Location.Period[panel].Rep[1].PPn;
+    //         let spN = response.SiteRep.DV.Location.Period[panel].Rep[1].S;
+    //         let visN = response.SiteRep.DV.Location.Period[panel].Rep[1].V;
+    //         let weTypeN = response.SiteRep.DV.Location.Period[panel].Rep[1].W;
+    //         $(locationBox).val(capitalizeFirstLetter(name) + ', ' + capitalizeFirstLetter(country));
+    //         $('.weatherType').html(weatherTypeCode(weTypeN));
+    //         $('.feelsLikeTemp').html(FNmin + '°' + '<br>' + 'feels like');
+    //         $('.actualTemp').html(Nmin + '°');
+    //         $('.precipProb').html(ppN + '%' + '<br>' + 'rain odds');
+    //         $('.uv').html('0');
+    //         $('.humidity').html(Hmid + '%');
+    //         $('.visibility').html(visibilityCode(visN));
+    //         $('.windSpeed').html(spN + ' mph');
+    //         $('.windDirection').html(direcN);
+    //         $('.windGust').html(Gmid + ' mph');
+    //         $('.date').html(dayOfWeek(panel));
+
+    //         $('.card').css({
+    //           'background-image': 'url("/images/night.gif")'
+    //         });
+    //       }
+    //     }
+    //   });
+    // }
 
   }
 });

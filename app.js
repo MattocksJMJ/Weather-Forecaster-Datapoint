@@ -6,10 +6,11 @@ var app = express();
 var request = require('request');
 var bodyParser = require('body-parser');
 const api_key = '98e621b0-231d-4ddd-bbe8-5a1a1e7ff48b'; // Your api key
-const location_id = '310094';						    // location_id could be retreived from client but I've hardcoded it
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json({ type: 'application/json' }));  
 
 // Landing page
@@ -17,32 +18,32 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.post('/', (req, res) => {
+  console.log(req.body.location_id);
+})
 
-// Test page
-// Server side request for api data, can also be done, I've done it client side for convenience. 
-// But a post request from the client will get the same data
-app.post('/test', (req, res) => {
-	var options = {url: 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' +
-		location_id +
-		'?res=daily&' + 
-		'key=' +
-		api_key,
-		headers: {
-			'Content-Type': 'application/json'
-		}};
-	request(options, (error, response, body) => {
-			console.log('error: ', error);
-			console.log('status code: ', response && response.statusCode);
-			// console.log('body: ', body); 								// Displays the data in the console
-			body = JSON.parse(body);
-			res.setHeader('Content-Type', 'application/json');
-			res.send(body);
-		});
-});
+// app.post('/test', (req, res) => {
+// 	var options = {url: 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' +
+// 		location_id +
+// 		'?res=daily&' + 
+// 		'key=' +
+// 		api_key,
+// 		headers: {
+// 			'Content-Type': 'application/json'
+// 		}};
+// 	request(options, (error, response, body) => {
+// 			console.log('error: ', error);
+// 			console.log('status code: ', response && response.statusCode);
+// 			// console.log('body: ', body); 								// Displays the data in the console
+// 			body = JSON.parse(body);
+// 			res.setHeader('Content-Type', 'application/json');
+// 			res.send(body);
+// 		});
+// });
 
-app.get('/test', (req, res) => {
-	res.render('index');
-});
+// app.get('/test', (req, res) => {
+// 	res.render('index');
+// });
 
 
 app.listen(process.env.PORT, 3000)
