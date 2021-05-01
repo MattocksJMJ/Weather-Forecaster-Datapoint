@@ -45,5 +45,5 @@ app.get('/test', (req, res) => {
 });
 
 
-app.listen(8080, 'localhost')
+app.listen(PORT, 'localhost')
 console.log('Server ready on 8080');
