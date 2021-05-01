@@ -66,12 +66,14 @@ $(locationBox).keypress((evt) => {
         xml.setRequestHeader("Content-Type", "application/json");
         var send = {"location_id":location_id};
         var sendString = JSON.stringify(send);
+        xml.addEventListener("load", reqListener);
         xml.send(sendString);
-      }
 
-      var response = XMLHttpRequest.responseText;
-      console.log(response);
-      
+        // get response
+        function reqListener(){
+          console.log(this.responseText);
+        }
+      }
 
     // function getData(location_id) {
     //   $.ajax({

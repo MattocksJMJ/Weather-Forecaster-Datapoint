@@ -33,7 +33,7 @@ app.post('/api', (req, res) => {
 	request(options, (error, response, body) => {
 		console.log('error: ', error);
 		console.log('status code: ', response && response.statusCode);
-		console.log('body: ', body);
+		// console.log('body: ', body);
 		body = JSON.parse(body);
 		res.setHeader('Content-Type', 'application/json');
 		res.send(body);
