@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var bodyParser = require('body-parser');
-const api_key = ''; // Your api key
+const api_key = '98e621b0-231d-4ddd-bbe8-5a1a1e7ff48b'; // Your api key
 const location_id = '310094';						    // location_id could be retreived from client but I've hardcoded it
 
 app.set('view engine', 'ejs');
@@ -46,5 +46,4 @@ app.get('/test', (req, res) => {
 
 
 app.listen(8080, 'localhost')
-app.listen(8080, '192.168.0.16');
 console.log('Server ready on 8080');

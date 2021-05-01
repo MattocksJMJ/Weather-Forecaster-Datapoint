@@ -3,13 +3,13 @@ const sidebar = document.getElementsByClassName('siderbar_extended');
 const overlay = document.getElementsByClassName('overlay');
 let sidebarOut = false;
 const locationBox = document.getElementsByClassName('locationBox');
-const api_key = '';
+const api_key = '98e621b0-231d-4ddd-bbe8-5a1a1e7ff48b';
 const dayB = document.getElementById('day');
 const nightB = document.getElementById('night');
 let dayNight = 'day';
 const output = document.getElementsByClassName('output');
 let cardExtended = false;
-let autoComs = ['Ipswich', 'Portsmouth', 'Westminster'];
+let autoComs = ['Ipswich', 'Sheffield', 'sheffield', 'Westminster'];
 let _arr = [];
 let panel = 0;
 
@@ -51,9 +51,9 @@ $(locationBox).keypress((evt) => {
     if (locationVal == 'Ipswich') {
       // location_id = '310094';
       getData(310094);
-    } else if (locationVal == 'Portsmouth') {
-      // location_id = '310122';
-      getData(310122);
+    } else if (locationVal == 'Sheffield' || locationVal == 'sheffield') {
+      // location_id = '353467';
+      getData(353467);
     } else if (locationVal == 'Westminster') {
       // location_id = '354160';
       getData(354160);
