@@ -63,8 +63,7 @@ $(locationBox).keypress((evt) => {
       function getData(location_id) {
         var send = {"location_id":location_id, "dayNight":dayNight};
         var sendString = JSON.stringify(send);
-        alert(sendString);
-        xhttp.send(send);
+        XMLHttpRequest.send(sendString);
       }
 
     // function getData(location_id) {

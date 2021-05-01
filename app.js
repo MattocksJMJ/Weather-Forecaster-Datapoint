@@ -10,8 +10,10 @@ const api_key = '98e621b0-231d-4ddd-bbe8-5a1a1e7ff48b'; // Your api key
 
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json({ type: 'application/json' }));  
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded());  
 
 // Landing page
 app.get('/', (req, res) => {
